@@ -84,10 +84,14 @@ class Viewer extends React.Component<ViewerProps, ViewerState> {
         }
         if (this.state.isDisablePopup) return;
         event.preventDefault();
-        var rect = doc!.getSelection()!.getRangeAt(0).getBoundingClientRect();
-        this.setState({
-          rect,
-        });
+
+        if (doc!.getSelection()!.toString().trim().length !== 0) {
+          var rect = doc!.getSelection()!.getRangeAt(0).getBoundingClientRect();
+          this.setState({
+            rect,
+          });
+        }
+
         // iWin.getSelection() && showHighlight(getHightlightCoords());
       });
       doc.addEventListener("contextmenu", (event) => {

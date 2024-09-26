@@ -4,11 +4,11 @@
 }
 
 .logo {
-  width: 125px;
+  width: 50px;
   position: absolute;
   top: 15px;
-  left: 70px;
-  cursor: pointer;
+  left: 100px;
+  /*cursor: pointer;*/
 }
 .side-menu-container-parent {
   position: relative;

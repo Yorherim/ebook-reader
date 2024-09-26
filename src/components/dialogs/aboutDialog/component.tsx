@@ -50,72 +50,72 @@ class AboutDialog extends React.Component<AboutDialogProps, AboutDialogState> {
               <Trans>Setting</Trans>
             </li>
 
-            <li
-              className="sort-by-category-list"
-              onClick={() => {
-                if (
-                  StorageUtil.getReaderConfig("lang") === "zhCN" ||
-                  StorageUtil.getReaderConfig("lang") === "zhTW" ||
-                  StorageUtil.getReaderConfig("lang") === "zhMO"
-                ) {
-                  this.handleJump("https://koodoreader.com/zh/document");
-                } else {
-                  this.handleJump("https://koodoreader.com/en/document");
-                }
-              }}
-            >
-              <Trans>Document</Trans>
-            </li>
-            <li
-              className="sort-by-category-list"
-              onClick={async () => {
-                this.handleJump(`https://koodoreader.com/en/support`);
-              }}
-            >
-              <Trans>Feedback</Trans>
-            </li>
-            <li
-              className="sort-by-category-list"
-              onClick={() => {
-                if (
-                  StorageUtil.getReaderConfig("lang") === "zhCN" ||
-                  StorageUtil.getReaderConfig("lang") === "zhTW" ||
-                  StorageUtil.getReaderConfig("lang") === "zhMO"
-                ) {
-                  this.handleJump("https://koodoreader.com/zh/roadmap");
-                } else {
-                  this.handleJump("https://koodoreader.com/en/roadmap");
-                }
-              }}
-            >
-              <Trans>Roadmap</Trans>
-            </li>
-            <li
-              className="sort-by-category-list"
-              onClick={() => {
-                this.handleJump("https://koodoreader.com");
-              }}
-            >
-              <Trans>Our website</Trans>
-            </li>
-            <li
-              className="sort-by-category-list"
-              onClick={() => {
-                this.handleJump(
-                  "https://github.com/koodo-reader/koodo-reader#translation"
-                );
-              }}
-            >
-              <Trans>Translation</Trans>
-            </li>
-            <li
-              className="sort-by-category-list"
-              onClick={() => {
-                this.handleJump("https://github.com/koodo-reader/koodo-reader");
-              }}
-            >
-              <Trans>GitHub repository</Trans>
-            </li>
+            {/*<li*/}
+            {/*  className="sort-by-category-list"*/}
+            {/*  onClick={() => {*/}
+            {/*    if (*/}
+            {/*      StorageUtil.getReaderConfig("lang") === "zhCN" ||*/}
+            {/*      StorageUtil.getReaderConfig("lang") === "zhTW" ||*/}
+            {/*      StorageUtil.getReaderConfig("lang") === "zhMO"*/}
+            {/*    ) {*/}
+            {/*      this.handleJump("https://koodoreader.com/zh/document");*/}
+            {/*    } else {*/}
+            {/*      this.handleJump("https://koodoreader.com/en/document");*/}
+            {/*    }*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <Trans>Document</Trans>*/}
+            {/*</li>*/}
+            {/*<li*/}
+            {/*  className="sort-by-category-list"*/}
+            {/*  onClick={async () => {*/}
+            {/*    this.handleJump(`https://koodoreader.com/en/support`);*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <Trans>Feedback</Trans>*/}
+            {/*</li>*/}
+            {/*<li*/}
+            {/*  className="sort-by-category-list"*/}
+            {/*  onClick={() => {*/}
+            {/*    if (*/}
+            {/*      StorageUtil.getReaderConfig("lang") === "zhCN" ||*/}
+            {/*      StorageUtil.getReaderConfig("lang") === "zhTW" ||*/}
+            {/*      StorageUtil.getReaderConfig("lang") === "zhMO"*/}
+            {/*    ) {*/}
+            {/*      this.handleJump("https://koodoreader.com/zh/roadmap");*/}
+            {/*    } else {*/}
+            {/*      this.handleJump("https://koodoreader.com/en/roadmap");*/}
+            {/*    }*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <Trans>Roadmap</Trans>*/}
+            {/*</li>*/}
+            {/*<li*/}
+            {/*  className="sort-by-category-list"*/}
+            {/*  onClick={() => {*/}
+            {/*    this.handleJump("https://koodoreader.com");*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <Trans>Our website</Trans>*/}
+            {/*</li>*/}
+            {/*<li*/}
+            {/*  className="sort-by-category-list"*/}
+            {/*  onClick={() => {*/}
+            {/*    this.handleJump(*/}
+            {/*      "https://github.com/koodo-reader/koodo-reader#translation"*/}
+            {/*    );*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <Trans>Translation</Trans>*/}
+            {/*</li>*/}
+            {/*<li*/}
+            {/*  className="sort-by-category-list"*/}
+            {/*  onClick={() => {*/}
+            {/*    this.handleJump("https://github.com/koodo-reader/koodo-reader");*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <Trans>GitHub repository</Trans>*/}
+            {/*</li>*/}
 
             {isElectron && (
               <li
@@ -162,7 +162,7 @@ class AboutDialog extends React.Component<AboutDialogProps, AboutDialogState> {
               ? {
                   position: "absolute",
                   left: "665px",
-                  top: "250px",
+                  top: "100px",
                 }
               : { display: "none" }
           }

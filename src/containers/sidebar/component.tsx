@@ -238,17 +238,18 @@ class Sidebar extends React.Component<SidebarProps, SidebarState> {
           </div>
 
           <img
-            src={
-              StorageUtil.getReaderConfig("appSkin") === "night" ||
-              (StorageUtil.getReaderConfig("appSkin") === "system" &&
-                StorageUtil.getReaderConfig("isOSNight") === "yes")
-                ? "./assets/label_light.png"
-                : "./assets/label.png"
-            }
-            alt=""
-            onClick={() => {
-              this.handleJump("https://koodoreader.com");
-            }}
+            // src={
+            //   StorageUtil.getReaderConfig("appSkin") === "night" ||
+            //   (StorageUtil.getReaderConfig("appSkin") === "system" &&
+            //     StorageUtil.getReaderConfig("isOSNight") === "yes")
+            //     ? "./assets/label_light.png"
+            //     : "./assets/label.png"
+            // }
+            src={"./assets/ebook.png"}
+            alt="logo"
+            // onClick={() => {
+            //   this.handleJump("https://koodoreader.com");
+            // }}
             style={this.state.isCollapsed ? { display: "none" } : {}}
             className="logo"
           />
