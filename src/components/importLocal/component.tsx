@@ -52,10 +52,34 @@ class ImportLocal extends React.Component<ImportLocalProps, ImportLocalState> {
         false
       );
     }
+
     window.addEventListener("resize", () => {
       this.setState({ width: document.body.clientWidth });
     });
+
+    if (localStorage.getItem('startBooksLoaded') !== "true") {
+      const loadBook = (url: string, type: string, fileName: string) => {
+        fetch(url)
+          .then(response => response.blob())
+          .then(blob => {
+            const pdfFile = new File([blob], fileName, { type: type });
+            this.getMd5WithBrowser(pdfFile);
+          })
+          .catch(error => {
+            console.error('Error fetching the file:', error);
+          });
+      }
+
+      const pdfUrl = process.env.PUBLIC_URL + '/assets/start-books/Dragons.pdf';
+      const epubUrl = process.env.PUBLIC_URL + '/assets/start-books/The Warlock\'s shadows.epub';
+
+      loadBook(pdfUrl, 'application/pdf', 'Dragons.pdf');
+      loadBook(epubUrl, "application/epub+zip", 'The Warlock\'s shadows.epub');
+
+      localStorage.setItem('startBooksLoaded', "true");
+    }
   }
+
   handleFilePath = async (filePath: string) => {
     clickFilePath = filePath;
     let md5 = await fetchMD5(await fetchFileFromPath(filePath));
@@ -144,6 +168,7 @@ class ImportLocal extends React.Component<ImportLocalProps, ImportLocalState> {
   getMd5WithBrowser = async (file: any) => {
     return new Promise<void>(async (resolve, reject) => {
       const md5 = await fetchMD5(file);
+      //console.log("md5", md5)
       if (!md5) {
         toast.error(this.props.t("Import failed"));
         return resolve();
@@ -198,6 +223,7 @@ class ImportLocal extends React.Component<ImportLocalProps, ImportLocalState> {
           let reader = new FileReader();
           reader.onload = async (event) => {
             const file_content = (event.target as any).result;
+            console.log("file_content", file_content)
             try {
               result = await BookUtil.generateBook(
                 bookName,
