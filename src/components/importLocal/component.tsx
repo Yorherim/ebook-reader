@@ -58,25 +58,26 @@ class ImportLocal extends React.Component<ImportLocalProps, ImportLocalState> {
     });
 
     if (localStorage.getItem('startBooksLoaded') !== "true") {
-      const loadBook = (url: string, type: string, fileName: string) => {
-        fetch(url)
-          .then(response => response.blob())
-          .then(blob => {
-            const pdfFile = new File([blob], fileName, { type: type });
-            this.getMd5WithBrowser(pdfFile);
-          })
-          .catch(error => {
-            console.error('Error fetching the file:', error);
-          });
+      const loadBook = async (url: string, type: string, fileName: string) => {
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+          const file = new File([blob], fileName, { type: type });
+          await this.getMd5WithBrowser(file);
+        } catch (error) {
+          console.error('Error fetching the file:', error);
+        }
       }
 
-      const pdfUrl = process.env.PUBLIC_URL + '/assets/start-books/Dragons.pdf';
-      const epubUrl = process.env.PUBLIC_URL + '/assets/start-books/The Warlock\'s shadows.epub';
+      (async function() {
+        const pdfUrl = process.env.PUBLIC_URL + '/assets/start-books/Dragons.pdf';
+        const epubUrl = process.env.PUBLIC_URL + '/assets/start-books/The Warlock\'s shadows.epub';
 
-      loadBook(pdfUrl, 'application/pdf', 'Dragons.pdf');
-      loadBook(epubUrl, "application/epub+zip", 'The Warlock\'s shadows.epub');
+        await loadBook(pdfUrl, 'application/pdf', 'Dragons.pdf');
+        await loadBook(epubUrl, "application/epub+zip", 'The Warlock\'s shadows.epub');
 
-      localStorage.setItem('startBooksLoaded', "true");
+        localStorage.setItem('startBooksLoaded', "true");
+      })()
     }
   }
 
@@ -143,7 +144,10 @@ class ImportLocal extends React.Component<ImportLocalProps, ImportLocalState> {
             let shelfTitles = Object.keys(ShelfUtil.getShelf());
             ShelfUtil.setShelf(shelfTitles[this.props.shelfIndex], book.key);
           }
-          toast.success(this.props.t("Addition successful"));
+          if (localStorage.getItem('startBooksLoaded') === "true") {
+            toast.success(this.props.t("Addition successful"));
+          }
+
           setTimeout(() => {
             this.state.isOpenFile && this.handleJump(book);
             if (
