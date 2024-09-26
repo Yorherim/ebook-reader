@@ -73,8 +73,10 @@ class ImportLocal extends React.Component<ImportLocalProps, ImportLocalState> {
         const pdfUrl = process.env.PUBLIC_URL + '/assets/start-books/Dragons.pdf';
         const epubUrl = process.env.PUBLIC_URL + '/assets/start-books/The Warlock\'s shadows.epub';
 
-        await loadBook(pdfUrl, 'application/pdf', 'Dragons.pdf');
-        await loadBook(epubUrl, "application/epub+zip", 'The Warlock\'s shadows.epub');
+        const p1 = loadBook(pdfUrl, 'application/pdf', 'Dragons.pdf');
+        const p2 = loadBook(epubUrl, "application/epub+zip", 'The Warlock\'s shadows.epub');
+
+        await Promise.all([p1, p2])
 
         localStorage.setItem('startBooksLoaded', "true");
       })()
