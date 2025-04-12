@@ -1,6 +1,7 @@
-import React from "react";
-import "./arrow.css";
+import React from 'react';
+import './arrow.css';
 const Arrow = () => {
+  console.log('Arrow');
   return (
     <div className="arrow-container">
       <svg
@@ -36,11 +37,7 @@ const Arrow = () => {
             strokeLinecap="round"
             strokeWidth="2"
           />
-          <path
-            d="M4.5,0,9,8H0Z"
-            transform="translate(799.5 100)"
-            fill="rgba(75,75,75)"
-          />
+          <path d="M4.5,0,9,8H0Z" transform="translate(799.5 100)" fill="rgba(75,75,75)" />
         </g>
       </svg>
     </div>
