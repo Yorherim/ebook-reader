@@ -1,7 +1,7 @@
 import React from 'react';
 import './arrow.css';
 const Arrow = () => {
-  console.log('Arrow');
+  console.log('Arrow1');
   return (
     <div className="arrow-container">
       <svg
